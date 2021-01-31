@@ -8,46 +8,25 @@ import androidx.lifecycle.ViewModel
 
 class ZitatenViewModel : ViewModel(){
 
-    val zitaten = listOf(
-        Zitate(
-            "Alles was wir machen kommt in der Zukünft an uns selbst!",
-            "Albert Einstein",
-            "1899"
-        ),
-        Zitate(
-            "Wenn man frühe aufsteht, kriegt man auch vieles",
-            "Cokrat",
-            "1488"
-        ),
-        Zitate(
-            "Übung macht Maister",
-            "Deutsche Rede Ausdrücke",
-            "0000"
-        )
-
-    )
-
-    private var index = 0
-
-    private val _zitate = MutableLiveData<Zitate>().apply { value = zitaten[index] }
-    val zitate: LiveData<Zitate>
-        get() = _zitate
-    val isFirst = Transformations.map(zitate) { index == 0 }
-    val isLast = Transformations.map(zitate) { index == zitaten.size -1 }
-
-    fun nextZitate() {
-        if (index < zitaten.size -1) {
-
-            index++
-            _zitate.value = zitaten[index]
-        }
-
+    private val _zitaten = MutableLiveData <MutableList<Zitate>>().apply {
+        value = mutableListOf()
     }
 
-    fun previousZitate() {
-        if (index > 0) {
-            index--
-            _zitate.value = zitaten[index]
-        }
+    val zitaten: LiveData<MutableList<Zitate>>
+        get() = _zitaten
+
+    val hasNoZitaten = Transformations.map(zitaten) { zitaten.value.isNullOrEmpty()}
+
+    var newZitateAdded = false
+
+    fun createZitate(text: String, author: String, year: String) {
+
+        newZitateAdded = true
+
+        val zitate = Zitate(text, author, year)
+        val list = _zitaten.value?: mutableListOf()
+        list.add(zitate)
+        _zitaten.value = list
     }
+
 }

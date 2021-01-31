@@ -4,85 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="viewmodel" type="com.example.meine_zitaten.ZitatenViewModel" />
+        <variable  name="viewmodel"  type="com.example.meine_zitaten.ZitatenViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/zitateText"
-            android:text="@{viewmodel.zitate.text}"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:textAlignment="textEnd"
+            android:layout_width="match_parent"
+            android:layout_height="346dp"
+            android:gravity="center"
+            android:hint="Keine Zitate"
+
+            android:textColorHint="#B64E4E"
             android:textSize="36sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.42000002"
-            tools:text="Nicht ist Beständig!" />
+            app:isGone="@{!viewmodel.hasNoZitaten}" />
 
-        <TextView
-            android:id="@+id/zitateAutor"
-            android:text="@{viewmodel.zitate.author}"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:textAlignment="textEnd"
-            android:textSize="26sp"
-            app:layout_constraintEnd_toEndOf="@+id/zitateText"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/zitateText"
-            tools:text="--Heraklit" />
 
-        <TextView
-            android:id="@+id/quoteYear"
-            android:text="@{viewmodel.zitate.year}"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:textAlignment="textEnd"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="@+id/zitateAutor"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="@+id/zitateAutor"
-            app:layout_constraintTop_toBottomOf="@+id/zitateAutor"
-            tools:text="Year v. Chr" />
+        <androidx.viewpager2.widget.ViewPager2
+
+            android:id="@+id/zitate_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="700dp"
+            app:isGone="@{viewmodel.hasNoZitaten}"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="32dp" />
+
 
         <Button
-            android:id="@+id/btn_next"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="48dp"
-            android:text="@string/next"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btn_back"
-            android:onClick="@{() -> viewmodel.nextZitate()}"
-            app:hideView="@{viewmodel.isLast}"/>
+            android:id="@+id/add_btn"
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:onClick="addZitate"
+            android:text="add new task" />
 
-        <Button
-            android:id="@+id/btn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="48dp"
-            android:text="@string/previous"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btn_next"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            android:onClick="@{() -> viewmodel.previousZitate()}"
-            app:hideView="@{viewmodel.isFirst}"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>
