@@ -1,6 +1,7 @@
 package com.example.meine_zitaten.fragments.list
 
 import android.app.AlertDialog
+import android.app.Application
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -11,26 +12,32 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.meine_zitaten.R
 import com.example.meine_zitaten.viewmodel.ZitatenViewModel
+import kotlinx.android.synthetic.main.fragment_list.*
 
-import kotlinx.android.synthetic.main.fragment_list.view.*
+class ListFragment: Fragment(R.layout.fragment_list) {
 
-class ListFragment : Fragment() {
+    lateinit var mZitatenViewModel: ZitatenViewModel
 
-    private lateinit var mZitatenViewModel: ZitatenViewModel
+    lateinit var adapter: ListAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
 
-        val view = inflater.inflate(R.layout.fragment_list, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-        //RecyclerView
+    }
 
-        val adapter = ListAdapter()
-        val recyclerView = view.recyclerview
-        recyclerView.adapter = adapter
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initRecyclerView()
+
+    }
+
+    fun initRecyclerView(){
+
+        adapter = ListAdapter()
+        val recyclerView = recyclerview
+//
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         //UserViewModel
@@ -40,15 +47,13 @@ class ListFragment : Fragment() {
             adapter.setData(zitate)
         })
 
-        view.increase.setOnClickListener{
+        increase.setOnClickListener{
             findNavController().navigate(R.id.action_listFragment_to_addFragment)
+
         }
 
-        //Add menu
-
+        recyclerView.adapter = adapter
         setHasOptionsMenu(true)
-
-        return view
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -71,8 +76,8 @@ class ListFragment : Fragment() {
 
             mZitatenViewModel.deleteAllZitaten()
             Toast.makeText(requireContext(),
-                "Succesfully removed everything",
-                Toast.LENGTH_LONG).show()
+                    "Succesfully removed everything",
+                    Toast.LENGTH_LONG).show()
 
         }
         builder.setNegativeButton("No"){ _,_ ->}

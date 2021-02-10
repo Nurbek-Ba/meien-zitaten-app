@@ -8,31 +8,6 @@
     android:padding="24dp">
 
     <EditText
-        android:id="@+id/age_here"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Age"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/addAuthoe_et"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/add_btn"
-        app:layout_constraintTop_toBottomOf="@+id/addAuthoe_et" />
-
-    <EditText
-        android:id="@+id/addText_et"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="164dp"
-        android:ems="10"
-        android:hint="Titel"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
         android:id="@+id/addAuthoe_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,16 +19,47 @@
         app:layout_constraintStart_toStartOf="@+id/age_here"
         app:layout_constraintTop_toBottomOf="@+id/addText_et" />
 
-    <Button
-        android:id="@+id/add_btn"
+    <EditText
+        android:id="@+id/addText_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="312dp"
-        android:text="Add"
+        android:layout_marginTop="168dp"
+        android:ems="10"
+        android:hint="Titel"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/age_here"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Nummer"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/addAuthoe_et"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/add_btn"
         app:layout_constraintTop_toBottomOf="@+id/addAuthoe_et" />
+
+    <Button
+        android:id="@+id/add_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/round_btn"
+        android:text="Add"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

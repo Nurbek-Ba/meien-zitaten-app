@@ -27,8 +27,8 @@ class UpdateFragment : Fragment() {
     private lateinit var mZitatenViewModel: ZitatenViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?):
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?):
             View? {
 
         // Inflate the layout for this fragment
@@ -38,7 +38,7 @@ class UpdateFragment : Fragment() {
 
         view.updateText_et.setText(args.currentUser.text)
         view.updateAuthor_et.setText(args.currentUser.author)
-        view.updateAge_et.setText(args.currentUser.age.toString())
+        view.updateAge_et.setText(args.currentUser.count.toString())
 
         view.update_btn.setOnClickListener{
             updateItem()
@@ -91,8 +91,8 @@ class UpdateFragment : Fragment() {
 
             mZitatenViewModel.deleteZitate(args.currentUser)
             Toast.makeText(requireContext(),
-                "Succesfully removed: ${args.currentUser.text}",
-                Toast.LENGTH_LONG).show()
+                    "Succesfully removed: ${args.currentUser.text}",
+                    Toast.LENGTH_LONG).show()
             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
 
         }

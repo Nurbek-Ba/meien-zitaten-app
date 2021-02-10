@@ -10,11 +10,12 @@ import kotlinx.android.parcel.Parcelize
 data class Zitate(
 
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val text: String,
-    val author: String,
-    val age: Int,
+    var id: Int,
+    var text: String="",
+    var author: String="",
+    var count: Int,
+    var isDone: Boolean = false,
 
-    ): Parcelable
+): Parcelable
 
 

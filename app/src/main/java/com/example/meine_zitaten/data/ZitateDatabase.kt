@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.meine_zitaten.model.Zitate
 
-@Database(entities = [Zitate::class], version = 3, exportSchema = false)
+@Database(entities = [Zitate::class], version = 6, exportSchema = false)
 abstract class ZitateDatabase: RoomDatabase() {
 
     abstract fun zitateDao(): ZitateDao

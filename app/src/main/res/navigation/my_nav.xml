@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav"
-    app:startDestination="@id/listFragment">
+    app:startDestination="@id/startFragment">
 
     <fragment
         android:id="@+id/listFragment"
@@ -37,5 +37,14 @@
         <argument
             android:name="currentUser"
             app:argType="com.example.meine_zitaten.model.Zitate" />
+    </fragment>
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.example.meine_zitaten.fragments.StartFragment"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start" >
+        <action
+            android:id="@+id/action_startFragment_to_listFragment"
+            app:destination="@id/listFragment" />
     </fragment>
 </navigation>

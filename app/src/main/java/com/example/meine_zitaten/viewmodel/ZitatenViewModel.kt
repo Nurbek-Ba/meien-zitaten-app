@@ -7,11 +7,18 @@ import com.example.meine_zitaten.data.ZitateDatabase.Companion.getDatabase
 import com.example.meine_zitaten.model.Zitate
 import com.example.meine_zitaten.repository.ZitateRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.invoke
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class ZitatenViewModel(application: Application) : AndroidViewModel(application){
     val readAllData: LiveData<List<Zitate>>
+
+    val zitaten = mutableListOf<Zitate>()
+//    val isDone = mutableListOf<Zitate>()
+
+    val isDoneZitate = mutableListOf<Zitate>()
 
     private val repository: ZitateRepository
     init {
@@ -21,8 +28,10 @@ class ZitatenViewModel(application: Application) : AndroidViewModel(application)
     }
 
     fun addZitate(zitate: Zitate){
-        viewModelScope.launch (Dispatchers.IO){
-            repository.addZitate(zitate)
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                repository.addZitate(zitate)
+            }
         }
     }
 
